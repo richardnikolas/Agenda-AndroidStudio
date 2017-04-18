@@ -30,8 +30,6 @@ public class FormularioActivity extends AppCompatActivity {
         if (aluno != null){
             helper.preencheFormulario(aluno);
         }
-
-
     }
 
     @Override
