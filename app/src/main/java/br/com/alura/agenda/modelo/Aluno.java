@@ -5,10 +5,10 @@ import java.io.Serializable;
 public class Aluno implements Serializable{
     private Long id;
     private String nome;
-    private String matricula;
-    private String telefone;
+    private String caracteristicas;
+    private String skills;
     private String site;
-    private double nota;
+    private double power;
 
     public Long getId() {
         return id;
@@ -26,20 +26,20 @@ public class Aluno implements Serializable{
         this.nome = nome;
     }
 
-    public String getMatricula() {
-        return matricula;
+    public String getCaracteristicas() {
+        return caracteristicas;
     }
 
-    public void setMatricula(String matricula) {
-        this.matricula = matricula;
+    public void setCaracteristicas(String caracteristicas) {
+        this.caracteristicas = caracteristicas;
     }
 
-    public String getTelefone() {
-        return telefone;
+    public String getSkills() {
+        return skills;
     }
 
-    public void setTelefone(String telefone) {
-        this.telefone = telefone;
+    public void setSkills(String skills) {
+        this.skills = skills;
     }
 
     public String getSite() {
@@ -50,12 +50,12 @@ public class Aluno implements Serializable{
         this.site = site;
     }
 
-    public double getNota() {
-        return nota;
+    public double getPower() {
+        return power;
     }
 
-    public void setNota(double nota) {
-        this.nota = nota;
+    public void setPower(double power) {
+        this.power = power;
     }
 
     @Override

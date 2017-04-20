@@ -15,12 +15,12 @@
             android:layout_height="wrap_content"
             android:id="@+id/formulario_nome"/>
 
-        <EditText android:hint="Matricula"
+        <EditText android:hint="Características"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/formulario_matricula"/>
 
-        <EditText android:hint="Telefone"
+        <EditText android:hint="Skills"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/formulario_telefone"/>

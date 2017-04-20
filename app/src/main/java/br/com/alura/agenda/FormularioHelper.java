@@ -25,19 +25,19 @@ public class FormularioHelper {
 
     public Aluno pegaAluno() {
         aluno.setNome(campoNome.getText().toString());
-        aluno.setMatricula(campoMatricula.getText().toString());
-        aluno.setTelefone(campoTelefone.getText().toString());
+        aluno.setCaracteristicas(campoMatricula.getText().toString());
+        aluno.setSkills(campoTelefone.getText().toString());
         aluno.setSite(campoSite.getText().toString());
-        aluno.setNota(Double.valueOf(campoNota.getProgress()));
+        aluno.setPower(Double.valueOf(campoNota.getProgress()));
         return aluno;
     }
 
     public void preencheFormulario(Aluno aluno) {
         campoNome.setText(aluno.getNome());
-        campoMatricula.setText(aluno.getMatricula());
-        campoTelefone.setText(aluno.getTelefone());
+        campoMatricula.setText(aluno.getCaracteristicas());
+        campoTelefone.setText(aluno.getSkills());
         campoSite.setText(aluno.getSite());
-        campoNota.setProgress((int) aluno.getNota());
+        campoNota.setProgress((int) aluno.getPower());
         this.aluno = aluno;
     }
 }

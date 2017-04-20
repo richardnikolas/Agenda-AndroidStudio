@@ -15,73 +15,69 @@ import br.com.alura.agenda.modelo.Aluno;
 public class AlunoDAO extends SQLiteOpenHelper {
 
     public AlunoDAO(Context context) {
-        super(context, "Agenda", null, 1);
+        super(context, "Characters", null, 1);
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String sql = "CREATE TABLE Alunos (id INTEGER PRIMARY KEY, nome TEXT NOT NULL, matricula TEXT, site TEXT, nota REAL);";
+        String sql = "CREATE TABLE Characters (id INTEGER PRIMARY KEY, nome TEXT NOT NULL, caracteristicas TEXT, site TEXT, power REAL, skills TEXT);";
         db.execSQL(sql);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        String sql = "DROP TABLE IF EXISTS Alunos";
+        String sql = "DROP TABLE IF EXISTS Characters";
         db.execSQL(sql);
         onCreate(db);
     }
 
     public void insere(Aluno aluno) {
         SQLiteDatabase db = getWritableDatabase();
-
         ContentValues dados = pegaDadosDoAluno(aluno);
-
-        db.insert("Alunos", null, dados);
+        db.insert("Characters", null, dados);
     }
 
     @NonNull
     private ContentValues pegaDadosDoAluno(Aluno aluno) {
         ContentValues dados = new ContentValues();
         dados.put("nome", aluno.getNome());
-        dados.put("matricula", aluno.getMatricula());
-        dados.put("telefone", aluno.getTelefone());
+        dados.put("caracteristicas", aluno.getCaracteristicas());
+        dados.put("skills", aluno.getSkills());
         dados.put("site", aluno.getSite());
-        dados.put("nota", aluno.getNota());
+        dados.put("power", aluno.getPower());
         return dados;
     }
 
-    public List<Aluno> buscaAlunos() {
-        String sql = "SELECT * from Alunos;";
+    public List<Aluno> buscaCharacters() {
+        String sql = "SELECT * from Characters;";
         SQLiteDatabase db = getReadableDatabase();
         Cursor c = db.rawQuery(sql, null);
 
-        List<Aluno> alunos = new ArrayList<>();
+        List<Aluno> Characters = new ArrayList<>();
         while(c.moveToNext()){
             Aluno aluno = new Aluno();
             aluno.setId(c.getLong(c.getColumnIndex("id")));
             aluno.setNome(c.getString(c.getColumnIndex("nome")));
-            aluno.setMatricula(c.getString(c.getColumnIndex("matricula")));
-            aluno.setTelefone(c.getString(c.getColumnIndex("telefone")));
+            aluno.setCaracteristicas(c.getString(c.getColumnIndex("caracteristicas")));
+            aluno.setSkills(c.getString(c.getColumnIndex("skills")));
             aluno.setSite(c.getString(c.getColumnIndex("site")));
-            aluno.setNota(c.getDouble(c.getColumnIndex("nota")));
-            alunos.add(aluno);
+            aluno.setPower(c.getDouble(c.getColumnIndex("power")));
+            Characters.add(aluno);
         }
         c.close();
-        return alunos;
+        return Characters;
     }
 
     public void deleta(Aluno aluno) {
         SQLiteDatabase db = getWritableDatabase();
         String[] params = {aluno.getId().toString()};
-        db.delete("Alunos", "id = ?", params);
+        db.delete("Characters", "id = ?", params);
     }
 
     public void altera(Aluno aluno) {
         SQLiteDatabase db = getWritableDatabase();
-
         ContentValues dados = pegaDadosDoAluno(aluno);
-
         String[] params = {aluno.getId().toString()};
-        db.update("Alunos", dados, "id = ?", params);
+        db.update("Characters", dados, "id = ?", params);
     }
 }
