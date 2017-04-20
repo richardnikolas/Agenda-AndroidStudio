@@ -15,20 +15,23 @@ import br.com.alura.agenda.modelo.Aluno;
 public class AlunoDAO extends SQLiteOpenHelper {
 
     public AlunoDAO(Context context) {
-        super(context, "Characters", null, 1);
+        super(context, "Characters", null, 2);
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String sql = "CREATE TABLE Characters (id INTEGER PRIMARY KEY, nome TEXT NOT NULL, caracteristicas TEXT, site TEXT, power REAL, skills TEXT);";
+        String sql = "CREATE TABLE Characters (id INTEGER PRIMARY KEY, nome TEXT NOT NULL, caracteristicas TEXT, site TEXT, power REAL, skills TEXT, caminhoFoto TEXT);";
         db.execSQL(sql);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        String sql = "DROP TABLE IF EXISTS Characters";
-        db.execSQL(sql);
-        onCreate(db);
+        String sql = "";
+        switch (oldVersion) {
+            case 1:
+                sql = "ALTER TABLE Characters ADD COLUMN caminhoFoto TEXT";
+                db.execSQL(sql);
+        }
     }
 
     public void insere(Aluno aluno) {
@@ -45,6 +48,7 @@ public class AlunoDAO extends SQLiteOpenHelper {
         dados.put("skills", aluno.getSkills());
         dados.put("site", aluno.getSite());
         dados.put("power", aluno.getPower());
+        dados.put("caminhoFoto", aluno.getCaminhoFoto());
         return dados;
     }
 
@@ -62,6 +66,7 @@ public class AlunoDAO extends SQLiteOpenHelper {
             aluno.setSkills(c.getString(c.getColumnIndex("skills")));
             aluno.setSite(c.getString(c.getColumnIndex("site")));
             aluno.setPower(c.getDouble(c.getColumnIndex("power")));
+            aluno.setCaminhoFoto(c.getString(c.getColumnIndex("caminhoFoto")));
             Characters.add(aluno);
         }
         c.close();
