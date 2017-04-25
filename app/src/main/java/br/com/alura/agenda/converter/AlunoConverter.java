@@ -9,22 +9,24 @@ import br.com.alura.agenda.modelo.Aluno;
 
 public class AlunoConverter {
 
-    public String converterParaJSON(List<Aluno> alunos) throws JSONException {
-        JSONStringer js = new JSONStringer();
+    public String converterParaJSON(List<Aluno> characters) throws JSONException {
 
         try {
+            JSONStringer js = new JSONStringer();
             js.object().key("list").array().object().key("character").array();
-            for (Aluno character: alunos){
+
+            for (Aluno character: characters){
                 js.object();
                 js.key("nome").value(character.getNome());
                 js.key("power").value(character.getPower());
                 js.endObject();
             }
-            js.endArray().endObject().endArray().endObject();
+            return js.endArray().endObject().endArray().endObject().toString();
+
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
-        return js.toString();
+        return "";
     }
 }

@@ -23,25 +23,28 @@ public class EnviaAlunosTask extends AsyncTask<Void, Void, String> {
 
     @Override
     protected void onPreExecute() {
+        super.onPreExecute();
         dialog = ProgressDialog.show(context, "Aguarde", "Calculando poder...", true, true);
+        dialog.show();
     }
 
     @Override
     protected String doInBackground(Void... params) {
+        WebClient client = new WebClient();
+        AlunoConverter conversor = new AlunoConverter();
+
         AlunoDAO dao = new AlunoDAO(context);
         List<Aluno> characters = dao.buscaCharacters();
         dao.close();
 
-        AlunoConverter conversor = new AlunoConverter();
         String json = null;
         try {
             json = conversor.converterParaJSON(characters);
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
-        WebClient client = new WebClient();
         String resposta = client.post(json);
+
         return resposta;
     }
 

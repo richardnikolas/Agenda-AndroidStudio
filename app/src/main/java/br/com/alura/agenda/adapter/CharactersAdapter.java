@@ -56,6 +56,11 @@ public class CharactersAdapter extends BaseAdapter {
         TextView campoNome = (TextView) view.findViewById(R.id.item_nome);
         campoNome.setText(character.getNome());
 
+        TextView campoSkill = (TextView) view.findViewById(R.id.item_skill);
+        if (campoSkill != null) {
+            campoSkill.setText(character.getSkills());
+        }
+
         ImageView campoFoto = (ImageView) view.findViewById(R.id.item_foto);
         String caminhoFoto = character.getCaminhoFoto();
         if(caminhoFoto != null) {
