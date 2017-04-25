@@ -84,21 +84,7 @@ public class ListaAlunosActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.menu_enviar_power:
-                AlunoDAO dao = new AlunoDAO(this);
-                List<Aluno> characters = dao.buscaCharacters();
-                dao.close();
-
-                AlunoConverter conversor = new AlunoConverter();
-                String json = null;
-                try {
-                    json = conversor.converterParaJSON(characters);
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-
-
-
-                Toast.makeText(this, "Calculando poder...", Toast.LENGTH_LONG).show();
+                new EnviaAlunosTask(this).execute();
                 break;
         }
         return super.onOptionsItemSelected(item);
