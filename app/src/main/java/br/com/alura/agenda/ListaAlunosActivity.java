@@ -91,6 +91,11 @@ public class ListaAlunosActivity extends AppCompatActivity {
                 Intent vaiParaProvas = new Intent(this, ProvasActivity.class);
                 startActivity(vaiParaProvas);
                 break;
+
+            case R.id.menu_mapa:
+                Intent vaiParaMapa = new Intent(this, MapsActivity.class);
+                startActivity(vaiParaMapa);
+                break;
         }
         return super.onOptionsItemSelected(item);
     }
@@ -100,10 +105,10 @@ public class ListaAlunosActivity extends AppCompatActivity {
         AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) menuInfo;
         final Aluno aluno = (Aluno) listaAlunos.getItemAtPosition(info.position);
 
-        /*MenuItem itemMapa = menu.add("Visualizar no mapa");
+        MenuItem itemMapa = menu.add("Visualizar no mapa");
         Intent intentMapa = new Intent(Intent.ACTION_VIEW);
-        intentMapa.setData(Uri.parse("geo:0,0?q=" + aluno.getEndereco()));
-        itemMapa.setIntent(intentMapa);*/
+        intentMapa.setData(Uri.parse("geo:0,0?q=" + aluno.getPais()));
+        itemMapa.setIntent(intentMapa);
 
         MenuItem itemSite = menu.add("Visitar site");
         Intent intentSite = new Intent(Intent.ACTION_VIEW);

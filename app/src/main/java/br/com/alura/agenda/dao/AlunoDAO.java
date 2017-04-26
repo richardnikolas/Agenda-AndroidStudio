@@ -20,7 +20,7 @@ public class AlunoDAO extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String sql = "CREATE TABLE Characters (id INTEGER PRIMARY KEY, nome TEXT NOT NULL, caracteristicas TEXT, site TEXT, power REAL, skills TEXT, caminhoFoto TEXT);";
+        String sql = "CREATE TABLE Characters (id INTEGER PRIMARY KEY, nome TEXT NOT NULL, caracteristicas TEXT, site TEXT, power REAL, skills TEXT, caminhoFoto TEXT, pais TEXT);";
         db.execSQL(sql);
     }
 
@@ -28,8 +28,8 @@ public class AlunoDAO extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         String sql = "";
         switch (oldVersion) {
-            case 1:
-                sql = "ALTER TABLE Characters ADD COLUMN caminhoFoto TEXT";
+            case 2:
+                sql = "ALTER TABLE Characters ADD COLUMN pais TEXT";
                 db.execSQL(sql);
         }
     }
@@ -44,6 +44,7 @@ public class AlunoDAO extends SQLiteOpenHelper {
     private ContentValues pegaDadosDoAluno(Aluno aluno) {
         ContentValues dados = new ContentValues();
         dados.put("nome", aluno.getNome());
+        dados.put("pais", aluno.getPais());
         dados.put("caracteristicas", aluno.getCaracteristicas());
         dados.put("skills", aluno.getSkills());
         dados.put("site", aluno.getSite());
@@ -62,6 +63,7 @@ public class AlunoDAO extends SQLiteOpenHelper {
             Aluno aluno = new Aluno();
             aluno.setId(c.getLong(c.getColumnIndex("id")));
             aluno.setNome(c.getString(c.getColumnIndex("nome")));
+            aluno.setPais(c.getString(c.getColumnIndex("pais")));
             aluno.setCaracteristicas(c.getString(c.getColumnIndex("caracteristicas")));
             aluno.setSkills(c.getString(c.getColumnIndex("skills")));
             aluno.setSite(c.getString(c.getColumnIndex("site")));

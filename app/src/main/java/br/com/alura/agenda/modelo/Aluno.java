@@ -5,11 +5,13 @@ import java.io.Serializable;
 public class Aluno implements Serializable{
     private Long id;
     private String nome;
+    private String pais;
     private String caracteristicas;
     private String skills;
     private String site;
     private double power;
     private String caminhoFoto;
+
 
     public Long getId() {
         return id;
@@ -70,5 +72,13 @@ public class Aluno implements Serializable{
     @Override
     public String toString() {
         return getId() + " - " + getNome();
+    }
+
+    public String getPais() {
+        return pais;
+    }
+
+    public void setPais(String pais) {
+        this.pais = pais;
     }
 }

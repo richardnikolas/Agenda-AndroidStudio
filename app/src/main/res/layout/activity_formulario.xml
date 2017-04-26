@@ -38,6 +38,11 @@
             android:layout_height="wrap_content"
             android:id="@+id/formulario_nome"/>
 
+        <EditText android:hint="País de origem"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/formulario_pais"/>
+
         <EditText android:hint="Características"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

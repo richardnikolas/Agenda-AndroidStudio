@@ -10,16 +10,19 @@ import br.com.alura.agenda.modelo.Aluno;
 
 public class FormularioHelper {
     private final EditText campoNome;
+    private final EditText campoPais;
     private final EditText campoMatricula;
     private final EditText campoTelefone;
     private final EditText campoSite;
     private final RatingBar campoNota;
     private final ImageView campoFoto;
 
+
     private Aluno aluno;
 
     public FormularioHelper(FormularioActivity activity) {
         campoNome = (EditText) activity.findViewById(R.id.formulario_nome);
+        campoPais = (EditText) activity.findViewById(R.id.formulario_pais);
         campoMatricula = (EditText) activity.findViewById(R.id.formulario_matricula);
         campoTelefone = (EditText) activity.findViewById(R.id.formulario_telefone);
         campoSite = (EditText) activity.findViewById(R.id.formulario_site);
@@ -30,6 +33,7 @@ public class FormularioHelper {
 
     public Aluno pegaAluno() {
         aluno.setNome(campoNome.getText().toString());
+        aluno.setPais(campoPais.getText().toString());
         aluno.setCaracteristicas(campoMatricula.getText().toString());
         aluno.setSkills(campoTelefone.getText().toString());
         aluno.setSite(campoSite.getText().toString());
@@ -40,6 +44,7 @@ public class FormularioHelper {
 
     public void preencheFormulario(Aluno aluno) {
         campoNome.setText(aluno.getNome());
+        campoPais.setText(aluno.getPais());
         campoMatricula.setText(aluno.getCaracteristicas());
         campoTelefone.setText(aluno.getSkills());
         campoSite.setText(aluno.getSite());
