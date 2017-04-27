@@ -25,12 +25,13 @@ import br.com.alura.agenda.dao.AlunoDAO;
 import br.com.alura.agenda.modelo.Aluno;
 import static br.com.alura.agenda.R.styleable.View;
 
-public class FormularioActivity extends AppCompatActivity {
+public class FormularioActivity extends AppCompatActivity{
 
     public static final int CODIGO_CAMERA = 666;
     public static final int UPLOAD_IMAGE = 777;
     private FormularioHelper helper;
     private String caminhoFoto;
+    ImageView localUploadFoto;
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
@@ -58,25 +59,23 @@ public class FormularioActivity extends AppCompatActivity {
             }
         });
 
+        /*localUploadFoto.findViewById(R.id.formulario_foto);
         Button uploadFoto = (Button) findViewById(R.id.formulario_upload_foto);
         uploadFoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intentGaleria = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                caminhoFoto = getExternalFilesDir(null) + "/" + System.currentTimeMillis() + ".jpg";
-                File arquivoFoto = new File(caminhoFoto);
-                intentGaleria.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(arquivoFoto));
+                Uri imagemSelecionada = intentGaleria.getData();
+                localUploadFoto.setImageURI(imagemSelecionada);
                 startActivityForResult(intentGaleria, UPLOAD_IMAGE);
             }
-        });
+        });*/
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (resultCode == Activity.RESULT_OK && data != null) {
+        if (resultCode == Activity.RESULT_OK) {
             if (requestCode == CODIGO_CAMERA) {
-                helper.carregaImagem(caminhoFoto);
-            } else if (requestCode == UPLOAD_IMAGE){;
                 helper.carregaImagem(caminhoFoto);
             }
         }
